@@ -80,8 +80,7 @@ class TextChannel extends MessageChannel
   Stream<Message> getPinnedMessages() async* {
     final HttpResponse r = await client._http.send('GET', "/channels/$id/pins");
 
-    for (Map<String, dynamic> val in r.body.values.first)
-      yield Message._new(val, client);
+    for (var val in r.body.values.first) yield Message._new(val as Map<String, dynamic>, client);
   }
 
   @override
